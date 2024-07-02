@@ -1,6 +1,6 @@
-# foobar
+# rlab
 
-foobar is a Python project for dealing with ...
+rlab is a Python project for dealing with Reinforcement Learning experiments using MuJoCo experimental simulator.
 
 ## Installation & Contributing
 

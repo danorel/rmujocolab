@@ -10,13 +10,13 @@
 1. Install python virtual environment:
 
 ```shell
-pyenv virtualenv 3.11.3 foobar_3.11.3
+conda create -n rlab_3.11.3 python=3.11.3
 ```
 
 2. Activate python virtual env
 
 ```shell
-pyenv activate foobar_3.11.3
+conda activate rlab_3.11.3
 ```
 
 3. Install python dependencies from requirements.txt:
