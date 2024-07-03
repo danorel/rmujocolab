@@ -3,20 +3,16 @@ import mujoco.viewer
 import time 
 
 # Make model and data
-xml = """
-<mujoco>
-  <worldbody>
-    <geom name="red_box" type="box" size=".2 .2 .2" rgba="1 0 0 1"/>
-    <geom name="green_sphere" pos=".2 .2 .2" size=".1" rgba="0 1 0 1"/>
-  </worldbody>
-</mujoco>
-"""
-m = mujoco.MjModel.from_xml_string(xml)
+m = mujoco.MjModel.from_xml_path("models/spider/scene.xml")
 d = mujoco.MjData(m)
 
+exited = False
 paused = False
 
 def key_callback(keycode):
+    if chr(keycode) == 'x':
+        global exited
+        exited = not exited
     if chr(keycode) == ' ':
         global paused
         paused = not paused
@@ -24,7 +20,7 @@ def key_callback(keycode):
 with mujoco.viewer.launch_passive(m, d, key_callback=key_callback) as viewer:
     # Close the viewer automatically after 30 wall-seconds.
     start = time.time()
-    while viewer.is_running() and time.time() - start < 30:
+    while viewer.is_running() and not exited:
         if not paused:
             step_start = time.time()
 
@@ -43,3 +39,4 @@ with mujoco.viewer.launch_passive(m, d, key_callback=key_callback) as viewer:
             time_until_next_step = m.opt.timestep - (time.time() - step_start)
             if time_until_next_step > 0:
                 time.sleep(time_until_next_step)
+    viewer.close()
