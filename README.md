@@ -9,7 +9,7 @@ Use the [DEVELOPER.md](./DEVELOPER.md) guide to run or contribute to the project
 ## Usage
 
 ```python
-mjpython main.py
+mjpython runner.py
 ```
 
 ## License

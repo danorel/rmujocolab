@@ -3,7 +3,7 @@ import mujoco.viewer
 import time 
 
 # Make model and data
-m = mujoco.MjModel.from_xml_path("models/spider/scene.xml")
+m = mujoco.MjModel.from_xml_path("tutorial/models/box_and_square.xml")
 d = mujoco.MjData(m)
 
 exited = False
